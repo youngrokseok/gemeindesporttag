@@ -1,0 +1,98 @@
+Gemeindesporttag – Anmeldung (Svelte + Tailwind + Vite)
+=========================================================
+
+Was du bekommst
+---------------
+- src/                         → Svelte-App (Anmeldeseite)
+- src/lib/config.js            → Event-Daten + Google-Sheets-URL
+- google-apps-script/Code.gs   → schreibt ins Google Sheet
+- dist/                        → fertige Seite nach „npm run build“ (online hochladen)
+
+
+A) Google Sheet + Apps Script (einmalig, ca. 5–10 Min.)
+------------------------------------------------------
+1. https://sheets.google.com → leeres Tabellenblatt
+   Name z. B. „Gemeindesporttag Anmeldungen“
+
+2. Menü: Erweiterungen → Apps Script
+   - Allen Beispielcode löschen
+   - Inhalt von google-apps-script/Code.gs einfügen
+   - Speichern (Disketten-Symbol)
+
+3. Bereitstellen → Neue Bereitstellung
+   - Typ: Web-App
+   - Beschreibung: z. B. „Anmeldung“
+   - Ausführen als: Ich
+   - Wer hat Zugriff: Alle
+   - Bereitstellen → Google-Konto erlauben
+   - Die Web-App-URL kopieren
+     (endet mit /exec)
+
+4. In src/lib/config.js eintragen:
+   appsScriptUrl: "https://script.google.com/macros/s/DEINE-ID/exec"
+
+5. Im Sheet erscheinen die Tabs „Anmeldungen“ und „Angebote“
+   (Übersicht: Anzahl + Namen je Angebot), sobald die erste Anmeldung
+   ankommt – oder beim Aufruf der Web-App-URL im Browser.
+
+
+B) Lokal entwickeln und testen
+------------------------------
+Einmalig im Projektordner:
+
+  npm install
+
+Entwicklungsserver (mit Live-Reload):
+
+  npm run dev
+
+Dann im Browser die angezeigte Adresse öffnen (z. B. http://localhost:5173).
+
+Ohne appsScriptUrl zeigt das Formular eine Hinweis-Meldung (kein Fehler).
+
+
+C) Online stellen (GitHub Pages) + QR-Code
+------------------------------------------
+1. Repo auf GitHub anlegen (öffentlich), Name: gemeindesporttag
+
+2. Lokal pushen (einmalig):
+
+     git init
+     git add .
+     git commit -m "Initial commit"
+     git branch -M main
+     git remote add origin https://github.com/DEIN-USER/gemeindesporttag.git
+     git push -u origin main
+
+3. Im GitHub-Repo:
+   Settings → Pages → Build and deployment → Source: GitHub Actions
+
+4. Nach dem Workflow (Actions-Tab) ist die Seite erreichbar unter:
+   https://DEIN-USER.github.io/gemeindesporttag/
+
+   (Falls der Repo-Name anders heißt: in vite.config.js das base anpassen
+   und erneut pushen.)
+
+5. Diesen Link als QR-Code erzeugen und aushängen.
+
+
+D) Jeden Monat anpassen
+-----------------------
+In src/lib/config.js ändern:
+- event.dateLabel
+- ggf. event.place / event.address
+- ggf. program / activities
+
+PayPal bleibt: youngrokseok@gmail.com
+
+
+Hinweise
+--------
+- Max. 10 Personen pro Absendung („+ Person hinzufügen“)
+- Tab „Anmeldungen“: eine Zeile pro Person
+- Tab „Angebote“: eine Spalte pro Angebot — Anzahl + Namen untereinander
+  (wird bei jeder Anmeldung neu aufgebaut)
+- Wenn du Code.gs änderst: Bereitstellen → Bereitstellungen verwalten →
+  Stift-Symbol → Version „Neue Version“ → Bereitstellen (URL bleibt gleich)
+- „no-cors“-Sendung: Browser sieht keine Fehlerantwort von Google;
+  Anmeldungen bitte im Sheet prüfen
