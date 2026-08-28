@@ -138,7 +138,7 @@
       {/each}
     </div>
 
-    <div class="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+    <div class="flex flex-col gap-5 sm:flex-row sm:flex-wrap">
       <button
         type="button"
         disabled={atMax}
