@@ -7,7 +7,7 @@
 </script>
 
 <section
-  class="animate-rise relative mx-auto mb-4 w-full max-w-2xl px-4"
+  class="animate-rise relative mx-auto mb-4 w-full max-w-3xl px-4"
   aria-live="polite"
 >
   <div

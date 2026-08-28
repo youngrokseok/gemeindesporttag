@@ -24,7 +24,7 @@ export const config = {
   program: [
     { name: "Fußball", time: "15:30–17:00 Erwachsene / 17:00–18:00 Kinder" },
     { name: "Badminton", time: "15:30–17:00" },
-    { name: "Sprungplatz für Kinder", time: "17:00–18:00" },
+    { name: "Sprungplatz für Kinder (max. 10 Plätze)", time: "17:00–18:00" },
     { name: "Pizza-Gemeinschaft", time: "ab 18:30" },
   ],
   fees: "ab 30 J.: 5 € · 15–29 J.: 3 € · unter 15 J.: 2 €",

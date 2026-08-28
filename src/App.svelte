@@ -47,6 +47,6 @@
   {/if}
 </main>
 
-<footer class="relative mx-auto w-full max-w-2xl px-5 py-6 pb-10 text-sm text-muted">
+<footer class="relative mx-auto w-full max-w-3xl px-5 py-6 pb-10 text-sm text-muted">
   <p>Gemeindesporttag · Anmeldung digital</p>
 </footer>
