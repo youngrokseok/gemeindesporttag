@@ -24,7 +24,7 @@
     </h2>
     <p class="text-muted">{summary}</p>
     <p class="mt-4 text-muted">
-      Eigenbeitrag an
+      Eigenbeitrag per PayPal an
       <a
         href="mailto:{event.paypalEmail}"
         class="font-semibold text-accent-deep underline underline-offset-2"
