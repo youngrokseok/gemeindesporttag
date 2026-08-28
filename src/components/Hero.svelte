@@ -4,7 +4,7 @@
   const { event } = config;
 </script>
 
-<header class="animate-rise relative mx-auto w-full max-w-2xl px-4 pt-14 pb-6">
+<header class="animate-rise relative mx-auto w-full max-w-2xl px-5 pt-14 pb-6">
   <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-accent-deep">
     {event.dateLabel}
   </p>
@@ -13,7 +13,7 @@
   >
     {event.title}
   </h1>
-  <p class="mt-4 max-w-lg text-lg text-muted">
+  <p class="mt-4 text-lg text-muted">
     Melde dich und bis zu {config.maxParticipants} Personen an – Familie, Freunde,
     Kinder.
   </p>
