@@ -2,7 +2,7 @@
   import { config } from "../lib/config.js";
   import ParticipantCard from "./ParticipantCard.svelte";
 
-  let { onsuccess } = $props();
+  let { onsuccess, submitting = $bindable(false) } = $props();
 
   let nextId = 1;
 
@@ -18,7 +18,6 @@
   let participants = $state([createParticipant()]);
   let statusMessage = $state("");
   let statusType = $state("");
-  let submitting = $state(false);
 
   let atMax = $derived(participants.length >= config.maxParticipants);
 
@@ -88,7 +87,7 @@
     }
 
     submitting = true;
-    setStatus("Wird gesendet …");
+    setStatus("");
 
     const payload = {
       participants: validated,
@@ -102,11 +101,14 @@
         body: JSON.stringify(payload),
       });
 
+      submitting = false;
+
       const total = validated.reduce((sum, p) => sum + p.amount, 0);
       const summary = `${validated.length} Person(en) angemeldet · Eigenbeitrag gesamt ${total} €.`;
       onsuccess(summary);
       setStatus("");
     } catch (err) {
+      submitting = false;
       setStatus(
         "Senden fehlgeschlagen. Bitte Internet prüfen oder später erneut versuchen.",
         "error",
@@ -125,6 +127,7 @@
   <form
     onsubmit={handleSubmit}
     novalidate
+    aria-busy={submitting}
     class="rounded-2xl border border-line bg-white/90 p-5 shadow-[0_18px_50px_rgba(20,36,28,0.08)] backdrop-blur-sm sm:p-6"
   >
     <h2 class="font-display mb-4 text-xl tracking-tight text-ink">Teilnehmer</h2>
@@ -142,7 +145,7 @@
     <div class="flex flex-col gap-5 sm:flex-row sm:flex-wrap">
       <button
         type="button"
-        disabled={atMax}
+        disabled={atMax || submitting}
         onclick={addParticipant}
         class="cursor-pointer rounded-full border-0 bg-[#e7eee9] px-5 py-3.5 text-sm font-semibold text-ink transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >

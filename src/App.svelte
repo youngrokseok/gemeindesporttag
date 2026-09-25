@@ -3,10 +3,12 @@
   import Program from "./components/Program.svelte";
   import SignupForm from "./components/SignupForm.svelte";
   import SuccessPanel from "./components/SuccessPanel.svelte";
+  import LoadingOverlay from "./components/LoadingOverlay.svelte";
 
   let showSuccess = $state(false);
   let successSummary = $state("");
   let formKey = $state(0);
+  let submitting = $state(false);
 
   function handleSuccess(summary) {
     successSummary = summary;
@@ -20,6 +22,10 @@
     formKey += 1;
   }
 </script>
+
+{#if submitting}
+  <LoadingOverlay />
+{/if}
 
 <div
   class="pointer-events-none fixed inset-0 opacity-35"
@@ -42,7 +48,7 @@
     <SuccessPanel summary={successSummary} onagain={handleAgain} />
   {:else}
     {#key formKey}
-      <SignupForm onsuccess={handleSuccess} />
+      <SignupForm bind:submitting onsuccess={handleSuccess} />
     {/key}
   {/if}
 </main>

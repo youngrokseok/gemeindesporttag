@@ -40,6 +40,16 @@ body {
   }
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-rise {
   animation: rise 0.7s ease both;
+}
+
+.animate-spin {
+  animation: spin 0.75s linear infinite;
 }
