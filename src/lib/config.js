@@ -3,7 +3,7 @@ export const config = {
   appsScriptUrl: "https://script.google.com/macros/s/AKfycbzOs15kdXXPTnrf-oKVCp2Cs0rocypke0uaYHExzHXcObGEEnXKkimY-8xN2-VvLUaY/exec",
   event: {
     title: "Gemeindesporttag",
-    dateLabel: "Samstag, 12.09.2026",
+    dateLabel: "Samstag, 17.10.2026",
     place: "Kautz Sportcenter",
     address: "Rhöndorfer Str. 10–13, 50939 Köln",
     paypalEmail: "youngrokseok@gmail.com",

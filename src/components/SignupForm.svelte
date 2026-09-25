@@ -102,7 +102,8 @@
         body: JSON.stringify(payload),
       });
 
-      const summary = `${validated.length} Person(en) angemeldet.`;
+      const total = validated.reduce((sum, p) => sum + p.amount, 0);
+      const summary = `${validated.length} Person(en) angemeldet · Eigenbeitrag gesamt ${total} €.`;
       onsuccess(summary);
       setStatus("");
     } catch (err) {
